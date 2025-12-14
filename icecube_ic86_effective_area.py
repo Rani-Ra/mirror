@@ -78,8 +78,30 @@ class IceCubeIC86EffectiveArea:
         --------
         float or array
             Effective area in m^2
+            
+        Raises:
+        -------
+        ValueError
+            If energy_gev contains non-positive values
         """
         energy_gev = np.atleast_1d(energy_gev)
+        
+        # Validate input
+        if np.any(energy_gev <= 0):
+            raise ValueError("Energy must be positive (> 0 GeV)")
+        
+        # Check bounds and warn if extrapolating
+        min_energy = 10**self.log_energies_gev[0]
+        max_energy = 10**self.log_energies_gev[-1]
+        if np.any(energy_gev < min_energy) or np.any(energy_gev > max_energy):
+            import warnings
+            warnings.warn(
+                f"Energy values outside calibrated range "
+                f"({min_energy:.0e} - {max_energy:.0e} GeV). "
+                f"Results will be extrapolated and may be inaccurate.",
+                UserWarning
+            )
+        
         log_energy = np.log10(energy_gev)
         
         # Interpolate in log space
@@ -164,16 +186,24 @@ class IceCubeIC86EffectiveArea:
         -----------
         filename : str
             Output filename
+            
+        Raises:
+        -------
+        IOError
+            If file cannot be written
         """
         energies_gev = 10**self.log_energies_gev
         
-        with open(filename, 'w') as f:
-            f.write('# IceCube IC86 Average Effective Area\n')
-            f.write('# Energy (GeV), Log10(Energy/GeV), Effective Area (m²)\n')
-            for e, log_e, a in zip(energies_gev, self.log_energies_gev, self.effective_area_m2):
-                f.write(f'{e:.6e},{log_e:.2f},{a:.6e}\n')
-        
-        print(f"Data exported to {filename}")
+        try:
+            with open(filename, 'w') as f:
+                f.write('# IceCube IC86 Average Effective Area\n')
+                f.write('# Energy (GeV), Log10(Energy/GeV), Effective Area (m²)\n')
+                for e, log_e, a in zip(energies_gev, self.log_energies_gev, self.effective_area_m2):
+                    f.write(f'{e:.6e},{log_e:.2f},{a:.6e}\n')
+            
+            print(f"Data exported to {filename}")
+        except (IOError, OSError) as e:
+            raise IOError(f"Failed to write data to {filename}: {e}")
 
 
 def main():
