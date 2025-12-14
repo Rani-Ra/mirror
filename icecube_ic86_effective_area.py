@@ -8,10 +8,19 @@ neutrino detection rates.
 
 The data is based on typical IceCube IC86 configuration performance for
 muon neutrinos (νμ) in the energy range from ~100 GeV to ~100 PeV.
+
+References:
+-----------
+- IceCube Collaboration, "Evidence for High-Energy Extraterrestrial Neutrinos
+  at the IceCube Detector", Science 342, 1242856 (2013)
+  DOI: 10.1126/science.1242856
+- IceCube Collaboration, "The IceCube Neutrino Observatory - Contributions to
+  ICRC 2015", arXiv:1510.05223
 """
 
 import numpy as np
 import matplotlib.pyplot as plt
+import warnings
 
 
 class IceCubeIC86EffectiveArea:
@@ -94,7 +103,6 @@ class IceCubeIC86EffectiveArea:
         min_energy = 10**self.log_energies_gev[0]
         max_energy = 10**self.log_energies_gev[-1]
         if np.any(energy_gev < min_energy) or np.any(energy_gev > max_energy):
-            import warnings
             warnings.warn(
                 f"Energy values outside calibrated range "
                 f"({min_energy:.0e} - {max_energy:.0e} GeV). "
@@ -203,7 +211,10 @@ class IceCubeIC86EffectiveArea:
             
             print(f"Data exported to {filename}")
         except (IOError, OSError) as e:
-            raise IOError(f"Failed to write data to {filename}: {e}")
+            raise IOError(
+                f"Failed to write data to {filename}: {e}\n"
+                f"Please check file permissions and available disk space."
+            )
 
 
 def main():

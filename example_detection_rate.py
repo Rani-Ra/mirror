@@ -53,8 +53,11 @@ def astrophysical_neutrino_flux(energy_gev):
     Notes:
     ------
     Based on IceCube measurements of astrophysical neutrino flux.
-    Reference: IceCube Collaboration, Science 342, 1242856 (2013)
-    and subsequent updates in ApJ 809, 98 (2015).
+    References:
+    - IceCube Collaboration, Science 342, 1242856 (2013)
+      DOI: 10.1126/science.1242856
+    - IceCube Collaboration, ApJ 809, 98 (2015)
+      DOI: 10.1088/0004-637X/809/1/98
     """
     # IceCube观测到的天体物理中微子通量
     # Astrophysical neutrino flux observed by IceCube
@@ -155,7 +158,10 @@ def main():
         plt.savefig('neutrino_detection_rates.png', dpi=300, bbox_inches='tight')
         print("图表已保存至 / Plot saved to: neutrino_detection_rates.png")
     except (IOError, OSError) as e:
-        print(f"警告：无法保存图表 / Warning: Could not save plot: {e}")
+        print(
+            f"警告：无法保存图表 / Warning: Could not save plot: {e}\n"
+            f"请检查文件权限和磁盘空间 / Please check file permissions and disk space."
+        )
     
     # 额外示例：计算特定能量的探测率
     # Additional example: calculate detection rate at specific energies
