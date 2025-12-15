@@ -60,14 +60,14 @@ npm start
     "simple-calculator": {
       "command": "node",
       "args": [
-        "/完整路径/mirror/mcp-example/src/index.js"
+        "/absolute/path/to/mirror/mcp-example/src/index.js"
       ]
     }
   }
 }
 ```
 
-**注意**: 请将 `/完整路径/` 替换为你的实际项目路径。
+**注意**: 请将 `/absolute/path/to/` 替换为你的实际项目路径。
 
 ### 第四步：在 Claude Desktop 中使用
 

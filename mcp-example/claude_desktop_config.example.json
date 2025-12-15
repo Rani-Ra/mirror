@@ -3,7 +3,7 @@
     "simple-calculator": {
       "command": "node",
       "args": [
-        "/绝对路径/mirror/mcp-example/src/index.js"
+        "/absolute/path/to/mirror/mcp-example/src/index.js"
       ]
     }
   }

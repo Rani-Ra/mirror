@@ -5,18 +5,13 @@
 
 import { Client } from "@modelcontextprotocol/sdk/client/index.js";
 import { StdioClientTransport } from "@modelcontextprotocol/sdk/client/stdio.js";
-import { spawn } from "child_process";
 
 async function testMCPServer() {
   console.log("🚀 启动 MCP 服务器测试...\n");
 
   try {
-    // 启动服务器进程
-    const serverProcess = spawn("node", ["src/index.js"], {
-      stdio: ["pipe", "pipe", "pipe"],
-    });
-
     // 创建客户端和传输层
+    // StdioClientTransport 会自动启动服务器进程
     const transport = new StdioClientTransport({
       command: "node",
       args: ["src/index.js"],
@@ -96,7 +91,6 @@ async function testMCPServer() {
 
     // 关闭连接
     await client.close();
-    serverProcess.kill();
     
     console.log("✅ 所有测试完成!");
     console.log("\n💡 提示: 现在你可以将这个 MCP 服务器配置到 Claude Desktop 中使用了！");
