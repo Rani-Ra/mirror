@@ -1,0 +1,25 @@
+{
+  "name": "simple-calculator-mcp",
+  "version": "1.0.0",
+  "description": "一个简单的 MCP 服务器示例 - 计算器",
+  "type": "module",
+  "main": "src/index.js",
+  "bin": {
+    "simple-calculator-mcp": "./src/index.js"
+  },
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "node src/test.js"
+  },
+  "keywords": [
+    "mcp",
+    "calculator",
+    "example",
+    "tutorial"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.24.3"
+  }
+}
