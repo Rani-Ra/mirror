@@ -49,12 +49,16 @@ npm start
 
 ## 📖 完整教程
 
-详细的学习教程请查看：
+### 快速入门
+- **⚡ 5分钟快速开始**: [QUICKSTART.md](./mcp-example/QUICKSTART.md) - 最快速度体验 MCP
 
-- **中文教程**: [mcp-example/README.md](./mcp-example/README.md)
-- **English Tutorial**: [mcp-example/README_EN.md](./mcp-example/README_EN.md)
+### 详细文档
+- **📘 中文完整教程**: [mcp-example/README.md](./mcp-example/README.md) - 详细的学习指南
+- **📗 English Tutorial**: [mcp-example/README_EN.md](./mcp-example/README_EN.md) - Complete guide in English
+- **🏗️ 架构图解**: [mcp-example/ARCHITECTURE.md](./mcp-example/ARCHITECTURE.md) - 深入理解 MCP 架构
+- **📖 使用指南**: [mcp-example/USAGE_GUIDE.md](./mcp-example/USAGE_GUIDE.md) - Claude Desktop 配置详解
 
-教程包含：
+### 内容包括：
 1. MCP 基础概念详解
 2. 代码逐行解析
 3. 如何配置到 Claude Desktop
