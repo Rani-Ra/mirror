@@ -53,6 +53,33 @@ def neutrino_luminosity_TQM(M_bh, a, z, E_nu=1e5):
     这是一个示例实现，请替换为您的实际模型！
     This is an example implementation, please replace with your actual model!
     
+    实现建议 / Implementation suggestions:
+    1. 从您的TQM模型中获取盘的表面密度 Σ(r) 和温度 T(r)
+       Get disk surface density Σ(r) and temperature T(r) from your TQM model
+    
+    2. 计算GRB喷流与盘物质的相互作用:
+       Calculate GRB jet-disk interaction:
+       - 质子-质子碰撞产生π介子 (p-p → π → ν)
+       - 光子-质子相互作用 (p-γ → Δ → π → ν)
+       - 中子衰变贡献 (n → p + e + ν̄)
+    
+    3. 考虑以下物理过程:
+       Consider the following physical processes:
+       - 喷流洛伦兹因子 Γ_jet 和张角 θ_jet
+       - 靶物质密度和柱密度
+       - 粒子加速效率 ε_p
+       - 中微子产生效率 f_π→ν
+    
+    4. 能谱通常为幂律形式: dN/dE ∝ E^(-γ)
+       Energy spectrum typically follows power-law: dN/dE ∝ E^(-γ)
+       - γ ~ 2.0-2.5 (取决于加速机制)
+       - 截断能量 E_max ~ f(Γ_jet, B, R_jet)
+    
+    参考文献 / References:
+    - Perna et al. (2021) - GRB jets in AGN disk
+    - Murase & Waxman (2016) - High-energy neutrino emission
+    - Zhang et al. (2021) - Jet-cocoon interaction
+    
     典型的依赖关系 / Typical dependencies:
     - L_nu ∝ M_bh^α (黑洞质量依赖 / mass dependence)
     - L_nu ∝ a^β (径向依赖 / radial dependence)

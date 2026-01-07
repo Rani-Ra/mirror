@@ -53,15 +53,10 @@ def plot_redshift_evolution():
     z_array = np.linspace(0, 3, 50)
     
     # Calculate total AGN density and GRB rate at each redshift
-    agn_density = []
     grb_rate = []
     comoving_volume = []
     
     for z in z_array:
-        # Total AGN density
-        n_agn = pop.total_grb_rate_at_z(z) / 1e-3  # Approximate
-        agn_density.append(n_agn)
-        
         # GRB rate density
         rate = pop.total_grb_rate_at_z(z)
         grb_rate.append(rate)
@@ -72,28 +67,18 @@ def plot_redshift_evolution():
     
     fig, axes = plt.subplots(2, 1, figsize=(10, 10))
     
-    # Plot 1: AGN and GRB rate density
+    # Plot 1: GRB rate density
     ax1 = axes[0]
-    ax1_twin = ax1.twinx()
     
-    line1 = ax1.plot(z_array, agn_density, 'b-', linewidth=2, 
-                     label='AGN Density')
-    line2 = ax1_twin.plot(z_array, grb_rate, 'r-', linewidth=2, 
-                          label='GRB Rate Density')
+    line1 = ax1.plot(z_array, grb_rate, 'r-', linewidth=2, 
+                     label='GRB Rate Density')
     
     ax1.set_xlabel('Redshift z', fontsize=14)
-    ax1.set_ylabel('AGN Density [Mpc$^{-3}$]', fontsize=14, color='b')
-    ax1_twin.set_ylabel('GRB Rate Density [Mpc$^{-3}$ yr$^{-1}$]', 
-                        fontsize=14, color='r')
-    ax1.tick_params(axis='y', labelcolor='b')
-    ax1_twin.tick_params(axis='y', labelcolor='r')
-    ax1.set_title('Redshift Evolution of AGN and GRB Populations', fontsize=16)
+    ax1.set_ylabel('GRB Rate Density [Mpc$^{-3}$ yr$^{-1}$]', fontsize=14, color='r')
+    ax1.tick_params(axis='y', labelcolor='r')
+    ax1.set_title('Redshift Evolution of GRB Population in AGN', fontsize=16)
     ax1.grid(True, alpha=0.3)
-    
-    # Combined legend
-    lines = line1 + line2
-    labels = [l.get_label() for l in lines]
-    ax1.legend(lines, labels, loc='upper left', fontsize=12)
+    ax1.legend(loc='upper left', fontsize=12)
     
     # Comoving volume element
     ax2 = axes[1]
